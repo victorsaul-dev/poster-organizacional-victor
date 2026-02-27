@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis Organizacional y Plan Estratégico</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A0E1A;
+    --deep: #0D1B2E;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --cream: #F4EDD8;
+    --accent: #2A6496;
+    --teal: #1A7E8F;
+    --muted: #8B99B5;
+  }
+
+  body {
+    width: 1200px;
+    min-height: 1700px;
+    background: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  .poster {
+    position: relative;
+    width: 1200px;
+    min-height: 1700px;
+    background: var(--navy);
+    overflow: hidden;
+  }
+
+  /* Background elements */
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .bg-circle-1 {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(42,100,150,0.12) 0%, transparent 70%);
+    top: -200px; right: -200px;
+  }
+
+  .bg-circle-2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,126,143,0.08) 0%, transparent 70%);
+    bottom: 200px; left: -150px;
+  }
+
+  .bg-line {
+    position: absolute;
+    top: 0; left: 80px;
+    width: 2px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3) 20%, rgba(201,168,76,0.3) 80%, transparent);
+  }
+
+  .bg-line-r {
+    position: absolute;
+    top: 0; right: 80px;
+    width: 2px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.2) 20%, rgba(201,168,76,0.2) 80%, transparent);
+  }
+
+  /* Header */
+  .header {
+    position: relative;
+    padding: 60px 120px 40px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 6px 16px;
+    margin-bottom: 28px;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--cream);
+    max-width: 700px;
+  }
+
+  .header h1 span {
+    color: var(--gold);
+  }
+
+  .header-sub {
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 550px;
+    line-height: 1.6;
+  }
+
+  .header-deco {
+    position: absolute;
+    right: 120px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+  }
+
+  .deco-ring {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 2px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  .deco-ring::before {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .deco-ring-inner {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--teal));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+  }
+
+  /* Main content */
+  .content {
+    padding: 50px 120px 60px;
+    position: relative;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 50px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .section-num {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, rgba(201,168,76,0.3) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .section-title span {
+    color: var(--gold);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,168,76,0.4), transparent);
+  }
+
+  /* Cards grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .cards-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* SWOT */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .swot-cell {
+    padding: 28px 28px;
+    position: relative;
+  }
+
+  .swot-cell.s { background: rgba(42,100,150,0.2); }
+  .swot-cell.w { background: rgba(201,168,76,0.08); }
+  .swot-cell.o { background: rgba(26,126,143,0.15); }
+  .swot-cell.t { background: rgba(150,50,50,0.15); }
+
+  .swot-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    opacity: 0.2;
+    position: absolute;
+    top: 12px; right: 20px;
+    line-height: 1;
+    color: var(--cream);
+  }
+
+  .swot-name {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .swot-items {
+    list-style: none;
+  }
+
+  .swot-items li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 4px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .swot-items li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 10px;
+    top: 5px;
+  }
+
+  /* Plan Estratégico */
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), var(--teal), rgba(201,168,76,0.2));
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 24px;
+  }
+
+  .tl-dot {
+    position: absolute;
+    left: -34px;
+    top: 8px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--navy);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.25);
+    flex-shrink: 0;
+  }
+
+  .tl-body {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 4px;
+    padding: 20px 24px;
+  }
+
+  .tl-phase {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .tl-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+  }
+
+  .tl-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 30px 120px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent);
+    margin: 40px 0;
+  }
+
+  /* Two columns layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 30px;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(42,100,150,0.15), rgba(26,126,143,0.1));
+    border: 1px solid rgba(42,100,150,0.3);
+    border-radius: 4px;
+    padding: 24px;
+    margin-top: 20px;
+  }
+
+  .highlight-box p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .highlight-box strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  /* Macro/micro cards */
+  .env-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .env-card {
+    border-radius: 4px;
+    padding: 24px;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .env-card.macro {
+    background: rgba(26,126,143,0.1);
+    border-color: rgba(26,126,143,0.3);
+  }
+
+  .env-card.micro {
+    background: rgba(42,100,150,0.1);
+    border-color: rgba(42,100,150,0.3);
+  }
+
+  .env-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .macro .env-badge { background: rgba(26,126,143,0.3); color: #5fc8d4; }
+  .micro .env-badge { background: rgba(42,100,150,0.3); color: #7ab3d4; }
+
+  .env-list {
+    list-style: none;
+  }
+
+  .env-list li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 5px 0;
+    padding-left: 16px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .env-list li:last-child { border-bottom: none; }
+
+  .env-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 12px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="bg-grid"></div>
+  <div class="bg-circle-1"></div>
+  <div class="bg-circle-2"></div>
+  <div class="bg-line"></div>
+  <div class="bg-line-r"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-tag">Administración Estratégica</div>
+    <h1>Análisis <span>Organizacional</span> y Plan Estratégico</h1>
+    <p class="header-sub">Modelo organizacional · Características del entorno · Elementos del plan estratégico</p>
+
+    <div class="header-deco">
+      <div class="deco-ring">
+        <div class="deco-ring-inner">🏛</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- SECCIÓN 1: MODELO ORGANIZACIONAL -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2 class="section-title">Modelo <span>Organizacional</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <span class="card-icon">🎯</span>
+          <div class="card-title">Misión</div>
+          <div class="card-desc">Razón de ser de la organización. Define qué hace, para quién lo hace y cómo lo hace, orientando todas las decisiones estratégicas.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔭</span>
+          <div class="card-title">Visión</div>
+          <div class="card-desc">Imagen futura deseada. Establece la dirección a largo plazo e inspira a los miembros de la organización hacia un objetivo común.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">⚖️</span>
+          <div class="card-title">Valores Corporativos</div>
+          <div class="card-desc">Principios y creencias que guían el comportamiento organizacional, formando la cultura y ética empresarial interna.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🏗️</span>
+          <div class="card-title">Estructura Organizativa</div>
+          <div class="card-desc">Jerarquía y distribución de roles, responsabilidades y autoridad. Puede ser funcional, divisional, matricial o por proyectos.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">⚙️</span>
+          <div class="card-title">Procesos Internos</div>
+          <div class="card-desc">Conjunto de actividades interrelacionadas que transforman entradas en salidas con valor para el cliente o la organización.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🧩</span>
+          <div class="card-title">Cadena de Valor</div>
+          <div class="card-desc">Actividades primarias (operaciones, marketing, servicio) y de apoyo (TI, RRHH, infraestructura) que generan ventaja competitiva.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECCIÓN 2: ANÁLISIS DEL ENTORNO -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <h2 class="section-title">Análisis del <span>Entorno</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="env-cards">
+            <div class="env-card macro">
+              <span class="env-badge">Macroentorno</span>
+              <ul class="env-list">
+                <li>Político-Legal (regulaciones, leyes)</li>
+                <li>Económico (inflación, PIB, tasas)</li>
+                <li>Sociocultural (demografía, tendencias)</li>
+                <li>Tecnológico (innovación, digitalización)</li>
+                <li>Ecológico (sostenibilidad, medio ambiente)</li>
+              </ul>
+            </div>
+            <div class="env-card micro">
+              <span class="env-badge">Microentorno</span>
+              <ul class="env-list">
+                <li>Clientes y segmentos de mercado</li>
+                <li>Competidores directos e indirectos</li>
+                <li>Proveedores estratégicos</li>
+                <li>Intermediarios y distribuidores</li>
+                <li>Grupos de interés (stakeholders)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <p><strong>Modelo PESTEL:</strong> herramienta para el análisis sistemático del macroentorno identificando factores <strong>P</strong>olíticos, <strong>E</strong>conómicos, <strong>S</strong>ocioculturales, <strong>T</strong>ecnológicos, <strong>E</strong>cológicos y <strong>L</strong>egales que impactan la estrategia.</p>
+          </div>
+        </div>
+
+        <!-- FODA -->
+        <div>
+          <p style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Análisis FODA</p>
+          <div class="swot-grid">
+            <div class="swot-cell s">
+              <span class="swot-label">F</span>
+              <div class="swot-name">Fortalezas</div>
+              <ul class="swot-items">
+                <li>Recursos internos clave</li>
+                <li>Capacidades distintivas</li>
+                <li>Ventajas competitivas</li>
+              </ul>
+            </div>
+            <div class="swot-cell w">
+              <span class="swot-label">D</span>
+              <div class="swot-name">Debilidades</div>
+              <ul class="swot-items">
+                <li>Limitaciones internas</li>
+                <li>Áreas de mejora</li>
+                <li>Recursos escasos</li>
+              </ul>
+            </div>
+            <div class="swot-cell o">
+              <span class="swot-label">O</span>
+              <div class="swot-name">Oportunidades</div>
+              <ul class="swot-items">
+                <li>Tendencias favorables</li>
+                <li>Mercados emergentes</li>
+                <li>Cambios tecnológicos</li>
+              </ul>
+            </div>
+            <div class="swot-cell t">
+              <span class="swot-label">A</span>
+              <div class="swot-name">Amenazas</div>
+              <ul class="swot-items">
+                <li>Competencia creciente</li>
+                <li>Cambios regulatorios</li>
+                <li>Volatilidad económica</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECCIÓN 3: PLAN ESTRATÉGICO -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2 class="section-title">Elementos del <span>Plan Estratégico</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-phase">Fase 01 · Diagnóstico</div>
+            <div class="tl-title">Objetivos Estratégicos</div>
+            <div class="tl-desc">Metas específicas, medibles y alcanzables que la organización busca lograr en un horizonte de tiempo definido. Se alinean con la misión y visión, y sirven como referencia para medir el desempeño organizacional.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-phase">Fase 02 · Formulación</div>
+            <div class="tl-title">Estrategias y Líneas de Acción</div>
+            <div class="tl-desc">Caminos o enfoques seleccionados para alcanzar los objetivos. Incluyen estrategias de crecimiento (penetración, desarrollo de mercado, diversificación), estabilidad o reducción según el contexto competitivo.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-phase">Fase 03 · Implementación</div>
+            <div class="tl-title">Programas, Proyectos y Presupuesto</div>
+            <div class="tl-desc">Traducción de las estrategias en acciones concretas con responsables, plazos y recursos asignados. El presupuesto estratégico asegura la viabilidad financiera de cada iniciativa planificada.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-phase">Fase 04 · Control</div>
+            <div class="tl-title">Indicadores KPI y Evaluación</div>
+            <div class="tl-desc">Métricas clave de desempeño (KPIs) que permiten monitorear el avance hacia los objetivos. Incluyen indicadores financieros, operacionales, de clientes y de aprendizaje organizacional (BSC).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom summary cards -->
+      <div class="cards-grid-2" style="margin-top: 28px;">
+        <div class="card">
+          <span class="card-icon">🗺️</span>
+          <div class="card-title">Mapa Estratégico (BSC)</div>
+          <div class="card-desc">El Balanced Scorecard vincula los objetivos estratégicos en cuatro perspectivas: financiera, clientes, procesos internos y aprendizaje. Visualiza relaciones causa-efecto entre iniciativas y resultados esperados.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔄</span>
+          <div class="card-title">Seguimiento y Retroalimentación</div>
+          <div class="card-desc">Proceso continuo de revisión del plan estratégico. Permite ajustar estrategias ante cambios del entorno, asegurando la alineación permanente entre la operación cotidiana y los objetivos de largo plazo.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-text">ADMINISTRACIÓN ESTRATÉGICA · 2025</div>
+    <div style="text-align:center; font-size:12px; color: var(--muted);">Modelo Organizacional · Entorno · Plan Estratégico</div>
+    <div class="footer-brand">PLANEACIÓN</div>
+  </div>
+</div>
+</body>
+</html>
